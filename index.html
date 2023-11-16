@@ -1,0 +1,172 @@
+<html>
+
+<head>
+    <!-- PyScript: https://github.com/pyscript/pyscript/releases -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2023.05.1/pyscript.css" />
+    <script defer src="https://pyscript.net/releases/2023.05.1/pyscript.js"></script>
+    <!-- Bootstrap: https://getbootstrap.com -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- local Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+    <py-config>
+        packages = []
+        [[fetch]]
+        files = ["./main.py", "./matchbox_1d_chess/chess_board.py", "./matchbox_1d_chess/utils.py", "./assets/ai/white_moves.json"]
+    </py-config>
+</head>
+
+<body>
+    <!-- Healthy Spacing -->
+    <br>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col logo-flex-col">
+                    <img onclick="window.location.href = 'https://jtexpo.github.io'" src="../assets/images/jtexpo.png"
+                        alt="" class="logo-img">
+                    <a href="https://jtexpo.github.io" class="display-3 logo-main-text">JTexpo</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="display-4 text-center">
+                        <a href="https://www.youtube.com/@JTexpo" target="_blank" class="logo-sub-text">
+                            Content To Tr<span style="color: #F3AF56;">AI</span>n Your Brain
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Healthy Spacing -->
+    <br>
+    <br>
+    <!-- Matchbox One D Chess -->
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-4">
+                    <div class="h2 info-body" id="turn">Turn:</div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="h2 info-body" id="held_piece">Held Piece:</div>
+                </div>
+                <div class="col-sm-1">
+                    <button py-click="reset()" class="btn btn-block btn-danger">Reset</button>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+            <br>
+            <!-- Board -->
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-1">
+                    <button py-click="select_tile(0)" id="board_0" class="btn btn-block btn-dark btn-lg"
+                        style="background-image:url(/assets/images/space.png); background-size:cover;">
+                        <img src="/assets/images/blank_square.png" alt="" style="width:100%">
+                    </button>
+                </div>
+                <div class="col-sm-1">
+                    <button py-click="select_tile(1)" id="board_1" class="btn btn-block btn-dark btn-lg"
+                        style="background-image:url(/assets/images/space.png); background-size:cover;">
+                        <img src="/assets/images/blank_square.png" alt="" style="width:100%">
+                    </button>
+                </div>
+                <div class="col-sm-1">
+                    <button py-click="select_tile(2)" id="board_2" class="btn btn-block btn-dark btn-lg"
+                        style="background-image:url(/assets/images/space.png); background-size:cover;">
+                        <img src="/assets/images/blank_square.png" alt="" style="width:100%">
+                    </button>
+                </div>
+                <div class="col-sm-1">
+                    <button py-click="select_tile(3)" id="board_3" class="btn btn-block btn-dark btn-lg"
+                        style="background-image:url(/assets/images/space.png); background-size:cover;">
+                        <img src="/assets/images/blank_square.png" alt="" style="width:100%">
+                    </button>
+                </div>
+                <div class="col-sm-1">
+                    <button py-click="select_tile(4)" id="board_4" class="btn btn-block btn-dark btn-lg"
+                        style="background-image:url(/assets/images/space.png); background-size:cover;">
+                        <img src="/assets/images/blank_square.png" alt="" style="width:100%">
+                    </button>
+                </div>
+                <div class="col-sm-1">
+                    <button py-click="select_tile(5)" id="board_5" class="btn btn-block btn-dark btn-lg"
+                        style="background-image:url(/assets/images/space.png); background-size:cover;">
+                        <img src="/assets/images/blank_square.png" alt="" style="width:100%">
+                    </button>
+                </div>
+                <div class="col-sm-1">
+                    <button py-click="select_tile(6)" id="board_6" class="btn btn-block btn-dark btn-lg"
+                        style="background-image:url(/assets/images/space.png); background-size:cover;">
+                        <img src="/assets/images/blank_square.png" alt="" style="width:100%">
+                    </button>
+                </div>
+                <div class="col-sm-1">
+                    <button py-click="select_tile(7)" id="board_7" class="btn btn-block btn-dark btn-lg"
+                        style="background-image:url(/assets/images/space.png); background-size:cover;">
+                        <img src="/assets/images/blank_square.png" alt="" style="width:100%">
+                    </button>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+            <!-- Healthy Spacing -->
+            <br>
+            <br>
+            <br>
+            <!-- Explination -->
+            <!-- How to use this app -->
+            <div class="row">
+                <div class="h2 info-header">How to use this app</div>
+            </div>
+            <div class="row">
+                <div class="h4 info-body">
+                    Upon loading the webpage, you'll notice the AI (white) making the first move, and it'll be your turn (black) to respond. 
+                    In one-dimensional chess: <br><br>
+                    <ul>
+                        <li>The rook can move left and right until it collides with another piece.</li>
+                        <li>The knight can move two spaces left or right, jumping over any piece on the first space.</li>
+                        <li>The king can only move back and forth.</li>
+                    </ul><br>
+                    Your objective is to avoid getting checkmated by the AI (white). 
+                    The game concludes when checkmate occurs. 
+                    Click the 'Reset' button to start a new game. <br><br>
+                </div>
+            </div>
+            <!-- What is a RNN -->
+            <div class="row">
+                <div class="h2 info-header">What is Match Box Algorithm?</div>
+            </div>
+            <div class="row">
+                <div class="h4 info-body">
+                    The Match Box Algorithm earned its name in 1961 when Donald Michie crafted a mechanical computer using 304 matchboxes to play tic-tac-toe. <br><br>
+                    The fundamental idea behind Match Box Algorithms is rooted in recognizing certain games with definitive flows, where the player going first can always secure a win or draw. <br><br>
+                    Think of the game as a maze. 
+                    Much like a depth-first search, the algorithm explores various game states until it reaches an undesirable state (a loss or draw). <br><br>
+                    The crucial move leading to this state is then removed from the algorithm's memory. 
+                    This strategic approach prevents the AI from repeating the same mistake in future moves. <br><br>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Healthy Spacing -->
+    <br>
+    <br>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <div class="h4 footer-rights">&copy; 2023 Justin Tyler Esposito. All rights reserved.</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <py-script src="./main.py"></py-script>
+</body>
+
+</html>
