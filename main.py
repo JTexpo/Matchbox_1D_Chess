@@ -26,14 +26,14 @@ held_piece_element = Element("held_piece")
 
 
 async def sync_board_to_gui(board: Board, turn: str, held_piece: str):
-    board_0_element.element.style = f"background-image:url(/assets/images/{board.board[0].name}.png); background-size:cover;"
-    board_1_element.element.style = f"background-image:url(/assets/images/{board.board[1].name}.png); background-size:cover;"
-    board_2_element.element.style = f"background-image:url(/assets/images/{board.board[2].name}.png); background-size:cover;"
-    board_3_element.element.style = f"background-image:url(/assets/images/{board.board[3].name}.png); background-size:cover;"
-    board_4_element.element.style = f"background-image:url(/assets/images/{board.board[4].name}.png); background-size:cover;"
-    board_5_element.element.style = f"background-image:url(/assets/images/{board.board[5].name}.png); background-size:cover;"
-    board_6_element.element.style = f"background-image:url(/assets/images/{board.board[6].name}.png); background-size:cover;"
-    board_7_element.element.style = f"background-image:url(/assets/images/{board.board[7].name}.png); background-size:cover;"
+    board_0_element.element.style = f"background-image:url(./assets/images/{board.board[0].name}.png); background-size:cover;"
+    board_1_element.element.style = f"background-image:url(./assets/images/{board.board[1].name}.png); background-size:cover;"
+    board_2_element.element.style = f"background-image:url(./assets/images/{board.board[2].name}.png); background-size:cover;"
+    board_3_element.element.style = f"background-image:url(./assets/images/{board.board[3].name}.png); background-size:cover;"
+    board_4_element.element.style = f"background-image:url(./assets/images/{board.board[4].name}.png); background-size:cover;"
+    board_5_element.element.style = f"background-image:url(./assets/images/{board.board[5].name}.png); background-size:cover;"
+    board_6_element.element.style = f"background-image:url(./assets/images/{board.board[6].name}.png); background-size:cover;"
+    board_7_element.element.style = f"background-image:url(./assets/images/{board.board[7].name}.png); background-size:cover;"
 
     turn_element.element.innerHTML = f"Turn: {turn}"
     held_piece_element.element.innerHTML = f"Held Piece: {held_piece}"
